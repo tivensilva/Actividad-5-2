@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 public class VentanaEsfera extends JFrame implements ActionListener {
     private Container contenedor;
-    private JLabel etiquetaRadio, etiquetaVolumen, etiquetaSuperficie;
-    private JTextField campoRadio;
-    private JButton botonCalcular;
+    private JLabel radioLabel, volumenLabel, superficieLabel;
+    private JTextField radioField;
+    private JButton calcularButton;
     private JLabel imagenLabel;
 
     public VentanaEsfera() {
@@ -24,25 +24,25 @@ public class VentanaEsfera extends JFrame implements ActionListener {
         contenedor = getContentPane();
         contenedor.setLayout(null);
 
-        etiquetaRadio = new JLabel();
-        etiquetaRadio.setText("Radio (cms):");
-        etiquetaRadio.setBounds(20, 20, 135, 23);
+        radioLabel = new JLabel();
+        radioLabel.setText("Radio (cms):");
+        radioLabel.setBounds(20, 20, 135, 23);
 
-        campoRadio = new JTextField();
-        campoRadio.setBounds(100, 20, 135, 23);
+        radioField = new JTextField();
+        radioField.setBounds(100, 20, 135, 23);
 
-        botonCalcular = new JButton();
-        botonCalcular.setText("Calcular");
-        botonCalcular.setBounds(100, 50, 135, 23);
-        botonCalcular.addActionListener(this);
+        calcularButton = new JButton();
+        calcularButton.setText("Calcular");
+        calcularButton.setBounds(100, 50, 135, 23);
+        calcularButton.addActionListener(this);
 
-        etiquetaVolumen = new JLabel();
-        etiquetaVolumen.setText("Volumen (cm3):");
-        etiquetaVolumen.setBounds(20, 90, 135, 23);
+        volumenLabel = new JLabel();
+        volumenLabel.setText("Volumen (cm3):");
+        volumenLabel.setBounds(20, 90, 135, 23);
 
-        etiquetaSuperficie = new JLabel();
-        etiquetaSuperficie.setText("Superficie (cm2):");
-        etiquetaSuperficie.setBounds(20, 120, 135, 23);
+        superficieLabel = new JLabel();
+        superficieLabel.setText("Superficie (cm2):");
+        superficieLabel.setBounds(20, 120, 135, 23);
 
         imagenLabel = new JLabel();
         imagenLabel.setBounds(20, 150, 240, 80);
@@ -54,22 +54,22 @@ public class VentanaEsfera extends JFrame implements ActionListener {
         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
         imagenLabel.setIcon(iconoRedimensionado);
 
-        contenedor.add(etiquetaRadio);
-        contenedor.add(campoRadio);
-        contenedor.add(botonCalcular);
-        contenedor.add(etiquetaVolumen);
-        contenedor.add(etiquetaSuperficie);
+        contenedor.add(radioLabel);
+        contenedor.add(radioField);
+        contenedor.add(calcularButton);
+        contenedor.add(volumenLabel);
+        contenedor.add(superficieLabel);
         contenedor.add(imagenLabel);
     }
 
     public void actionPerformed(ActionEvent evento) {
-        if (evento.getSource() == botonCalcular) {
+        if (evento.getSource() == calcularButton) {
             boolean error = false;
             try {
-                double radio = Double.parseDouble(campoRadio.getText());
+                double radio = Double.parseDouble(radioField.getText());
                 Esfera esfera = new Esfera(radio);
-                etiquetaVolumen.setText("Volumen (cm3): " + String.format("%.2f", esfera.calcularVolumen()));
-                etiquetaSuperficie.setText("Superficie (cm2): " + String.format("%.2f", esfera.calcularSuperficie()));
+                volumenLabel.setText("Volumen (cm3): " + String.format("%.2f", esfera.calcularVolumen()));
+                superficieLabel.setText("Superficie (cm2): " + String.format("%.2f", esfera.calcularSuperficie()));
             } catch (Exception e) {
                 error = true;
             } finally {

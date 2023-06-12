@@ -2,60 +2,59 @@ package Figuras;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Image;
 
 public class VentanaPrisma extends JFrame implements ActionListener {
     private Container contenedor;
-    private JLabel base, altura, profundidad, volumen, superficie;
-    private JTextField campoBase, campoAltura, campoProfundidad;
-    private JButton calcular;
+    private JLabel baseLabel, alturaLabel, profundidadLabel, volumenLabel, superficieLabel;
+    private JTextField baseField, alturaField, profundidadField;
+    private JButton calcularButton;
     private JLabel imagenLabel;
 
     public VentanaPrisma() {
-        inicio();
+        iniciar();
         setTitle("Prisma");
         setSize(280, 380);
         setLocationRelativeTo(null);
         setResizable(false);
     }
 
-    private void inicio() {
+    private void iniciar() {
         contenedor = getContentPane();
         contenedor.setLayout(null);
 
-        base = new JLabel();
-        base.setText("Base (cms):");
-        base.setBounds(20, 20, 135, 23);
-        campoBase = new JTextField();
-        campoBase.setBounds(120, 20, 135, 23);
+        baseLabel = new JLabel();
+        baseLabel.setText("Base (cms):");
+        baseLabel.setBounds(20, 20, 135, 23);
+        baseField = new JTextField();
+        baseField.setBounds(120, 20, 135, 23);
 
-        altura = new JLabel();
-        altura.setText("Altura (cms):");
-        altura.setBounds(20, 50, 135, 23);
-        campoAltura = new JTextField();
-        campoAltura.setBounds(120, 50, 135, 23);
+        alturaLabel = new JLabel();
+        alturaLabel.setText("Altura (cms):");
+        alturaLabel.setBounds(20, 50, 135, 23);
+        alturaField = new JTextField();
+        alturaField.setBounds(120, 50, 135, 23);
 
-        profundidad = new JLabel();
-        profundidad.setText("Profundidad (cms):");
-        profundidad.setBounds(20, 80, 135, 23);
-        campoProfundidad = new JTextField();
-        campoProfundidad.setBounds(160, 80, 95, 23);
+        profundidadLabel = new JLabel();
+        profundidadLabel.setText("Profundidad (cms):");
+        profundidadLabel.setBounds(20, 80, 135, 23);
+        profundidadField = new JTextField();
+        profundidadField.setBounds(160, 80, 95, 23);
 
-        calcular = new JButton();
-        calcular.setText("Calcular");
-        calcular.setBounds(120, 110, 135, 23);
-        calcular.addActionListener(this);
+        calcularButton = new JButton();
+        calcularButton.setText("Calcular");
+        calcularButton.setBounds(120, 110, 135, 23);
+        calcularButton.addActionListener(this);
 
-        volumen = new JLabel();
-        volumen.setText("Volumen (cm3):");
-        volumen.setBounds(20, 140, 135, 23);
+        volumenLabel = new JLabel();
+        volumenLabel.setText("Volumen (cm3):");
+        volumenLabel.setBounds(20, 140, 135, 23);
 
-        superficie = new JLabel();
-        superficie.setText("Superficie (cm2):");
-        superficie.setBounds(20, 170, 135, 23);
+        superficieLabel = new JLabel();
+        superficieLabel.setText("Superficie (cm2):");
+        superficieLabel.setBounds(20, 170, 135, 23);
 
         ImageIcon icono = new ImageIcon("img/prisma.jpg");
         Image imagen = icono.getImage();
@@ -64,15 +63,15 @@ public class VentanaPrisma extends JFrame implements ActionListener {
         imagenLabel = new JLabel(iconoRedimensionado);
         imagenLabel.setBounds(20, 200, 240, 120);
 
-        contenedor.add(base);
-        contenedor.add(campoBase);
-        contenedor.add(altura);
-        contenedor.add(campoAltura);
-        contenedor.add(profundidad);
-        contenedor.add(campoProfundidad);
-        contenedor.add(calcular);
-        contenedor.add(volumen);
-        contenedor.add(superficie);
+        contenedor.add(baseLabel);
+        contenedor.add(baseField);
+        contenedor.add(alturaLabel);
+        contenedor.add(alturaField);
+        contenedor.add(profundidadLabel);
+        contenedor.add(profundidadField);
+        contenedor.add(calcularButton);
+        contenedor.add(volumenLabel);
+        contenedor.add(superficieLabel);
         contenedor.add(imagenLabel);
     }
 
@@ -83,9 +82,9 @@ public class VentanaPrisma extends JFrame implements ActionListener {
         double altura = 0;
         double profundidad = 0;
         try {
-            base = Double.parseDouble(campoBase.getText());
-            altura = Double.parseDouble(campoAltura.getText());
-            profundidad = Double.parseDouble(campoProfundidad.getText());
+            base = Double.parseDouble(baseField.getText());
+            altura = Double.parseDouble(alturaField.getText());
+            profundidad = Double.parseDouble(profundidadField.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
             error = true;
@@ -94,8 +93,8 @@ public class VentanaPrisma extends JFrame implements ActionListener {
             prisma = new Prisma(base, altura, profundidad);
             double volumenResult = prisma.calcularVolumen();
             double superficieResult = prisma.calcularSuperficie();
-            volumen.setText("Volumen (cm3): " + volumenResult);
-            superficie.setText("Superficie (cm2): " + superficieResult);
+            volumenLabel.setText("Volumen (cm3): " + volumenResult);
+            superficieLabel.setText("Superficie (cm2): " + superficieResult);
         }
     }
 }

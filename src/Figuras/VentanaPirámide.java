@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 public class VentanaPirámide extends JFrame implements ActionListener {
     private Container contenedor;
-    private JLabel etiquetaBase, etiquetaAltura, etiquetaApotema, etiquetaVolumen, etiquetaSuperficie;
-    private JTextField campoBase, campoAltura, campoApotema;
-    private JButton botonCalcular;
+    private JLabel baseLabel, alturaLabel, apotemaLabel, volumenLabel, superficieLabel;
+    private JTextField baseField, alturaField, apotemaField;
+    private JButton calcularButton;
     private JLabel imagenLabel;
 
     public VentanaPirámide() {
@@ -24,39 +24,39 @@ public class VentanaPirámide extends JFrame implements ActionListener {
         contenedor = getContentPane();
         contenedor.setLayout(null);
 
-        etiquetaBase = new JLabel();
-        etiquetaBase.setText("Base (cms):");
-        etiquetaBase.setBounds(20, 20, 135, 23);
+        baseLabel = new JLabel();
+        baseLabel.setText("Base (cms):");
+        baseLabel.setBounds(20, 20, 135, 23);
 
-        campoBase = new JTextField();
-        campoBase.setBounds(120, 20, 135, 23);
+        baseField = new JTextField();
+        baseField.setBounds(120, 20, 135, 23);
 
-        etiquetaAltura = new JLabel();
-        etiquetaAltura.setText("Altura (cms):");
-        etiquetaAltura.setBounds(20, 50, 135, 23);
+        alturaLabel = new JLabel();
+        alturaLabel.setText("Altura (cms):");
+        alturaLabel.setBounds(20, 50, 135, 23);
 
-        campoAltura = new JTextField();
-        campoAltura.setBounds(120, 50, 135, 23);
+        alturaField = new JTextField();
+        alturaField.setBounds(120, 50, 135, 23);
 
-        etiquetaApotema = new JLabel();
-        etiquetaApotema.setText("Apotema (cms):");
-        etiquetaApotema.setBounds(20, 80, 135, 23);
+        apotemaLabel = new JLabel();
+        apotemaLabel.setText("Apotema (cms):");
+        apotemaLabel.setBounds(20, 80, 135, 23);
 
-        campoApotema = new JTextField();
-        campoApotema.setBounds(120, 80, 135, 23);
+        apotemaField = new JTextField();
+        apotemaField.setBounds(120, 80, 135, 23);
 
-        botonCalcular = new JButton();
-        botonCalcular.setText("Calcular");
-        botonCalcular.setBounds(120, 110, 135, 23);
-        botonCalcular.addActionListener(this);
+        calcularButton = new JButton();
+        calcularButton.setText("Calcular");
+        calcularButton.setBounds(120, 110, 135, 23);
+        calcularButton.addActionListener(this);
 
-        etiquetaVolumen = new JLabel();
-        etiquetaVolumen.setText("Volumen (cm3):");
-        etiquetaVolumen.setBounds(20, 140, 135, 23);
+        volumenLabel = new JLabel();
+        volumenLabel.setText("Volumen (cm3):");
+        volumenLabel.setBounds(20, 140, 135, 23);
 
-        etiquetaSuperficie = new JLabel();
-        etiquetaSuperficie.setText("Superficie (cm2):");
-        etiquetaSuperficie.setBounds(20, 170, 135, 23);
+        superficieLabel = new JLabel();
+        superficieLabel.setText("Superficie (cm2):");
+        superficieLabel.setBounds(20, 170, 135, 23);
 
         imagenLabel = new JLabel();
         imagenLabel.setBounds(20, 200, 240, 200);
@@ -68,15 +68,15 @@ public class VentanaPirámide extends JFrame implements ActionListener {
         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
         imagenLabel.setIcon(iconoRedimensionado);
 
-        contenedor.add(etiquetaBase);
-        contenedor.add(campoBase);
-        contenedor.add(etiquetaAltura);
-        contenedor.add(campoAltura);
-        contenedor.add(etiquetaApotema);
-        contenedor.add(campoApotema);
-        contenedor.add(botonCalcular);
-        contenedor.add(etiquetaVolumen);
-        contenedor.add(etiquetaSuperficie);
+        contenedor.add(baseLabel);
+        contenedor.add(baseField);
+        contenedor.add(alturaLabel);
+        contenedor.add(alturaField);
+        contenedor.add(apotemaLabel);
+        contenedor.add(apotemaField);
+        contenedor.add(calcularButton);
+        contenedor.add(volumenLabel);
+        contenedor.add(superficieLabel);
         contenedor.add(imagenLabel);
     }
 
@@ -87,9 +87,9 @@ public class VentanaPirámide extends JFrame implements ActionListener {
         double altura = 0;
         double apotema = 0;
         try {
-            base = Double.parseDouble(campoBase.getText());
-            altura = Double.parseDouble(campoAltura.getText());
-            apotema = Double.parseDouble(campoApotema.getText());
+            base = Double.parseDouble(baseField.getText());
+            altura = Double.parseDouble(alturaField.getText());
+            apotema = Double.parseDouble(apotemaField.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
             error = true;
@@ -97,8 +97,8 @@ public class VentanaPirámide extends JFrame implements ActionListener {
 
         if (!error) {
             piramide = new Pirámide(base, altura, apotema);
-            etiquetaVolumen.setText("Volumen (cm3): " + piramide.calcularVolumen());
-            etiquetaSuperficie.setText("Superficie (cm2): " + piramide.calcularSuperficie());
+            volumenLabel.setText("Volumen (cm3): " + piramide.calcularVolumen());
+            superficieLabel.setText("Superficie (cm2): " + piramide.calcularSuperficie());
         }
     }
 }

@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 
 public class VentanaCilindro extends JFrame implements ActionListener {
     private Container contenedor;
-    private JLabel etiquetaRadio, etiquetaAltura, etiquetaVolumen, etiquetaSuperficie;
-    private JTextField campoRadio, campoAltura;
-    private JButton botonCalcular;
+    private JLabel radioLabel, alturaLabel, volumenLabel, superficieLabel;
+    private JTextField radioField, alturaField;
+    private JButton calcularButton;
     private JLabel imagenLabel;
 
     public VentanaCilindro() {
@@ -24,32 +24,32 @@ public class VentanaCilindro extends JFrame implements ActionListener {
         contenedor = getContentPane();
         contenedor.setLayout(null);
 
-        etiquetaRadio = new JLabel();
-        etiquetaRadio.setText("Radio (cms):");
-        etiquetaRadio.setBounds(20, 20, 135, 23);
+        radioLabel = new JLabel();
+        radioLabel.setText("Radio (cms):");
+        radioLabel.setBounds(20, 20, 135, 23);
 
-        campoRadio = new JTextField();
-        campoRadio.setBounds(100, 20, 135, 23);
+        radioField = new JTextField();
+        radioField.setBounds(100, 20, 135, 23);
 
-        etiquetaAltura = new JLabel();
-        etiquetaAltura.setText("Altura (cms):");
-        etiquetaAltura.setBounds(20, 50, 135, 23);
+        alturaLabel = new JLabel();
+        alturaLabel.setText("Altura (cms):");
+        alturaLabel.setBounds(20, 50, 135, 23);
 
-        campoAltura = new JTextField();
-        campoAltura.setBounds(100, 50, 135, 23);
+        alturaField = new JTextField();
+        alturaField.setBounds(100, 50, 135, 23);
 
-        botonCalcular = new JButton();
-        botonCalcular.setText("Calcular");
-        botonCalcular.setBounds(100, 80, 135, 23);
-        botonCalcular.addActionListener(this);
+        calcularButton = new JButton();
+        calcularButton.setText("Calcular");
+        calcularButton.setBounds(100, 80, 135, 23);
+        calcularButton.addActionListener(this);
 
-        etiquetaVolumen = new JLabel();
-        etiquetaVolumen.setText("Volumen (cm3):");
-        etiquetaVolumen.setBounds(20, 120, 135, 23);
+        volumenLabel = new JLabel();
+        volumenLabel.setText("Volumen (cm3):");
+        volumenLabel.setBounds(20, 120, 135, 23);
 
-        etiquetaSuperficie = new JLabel();
-        etiquetaSuperficie.setText("Superficie (cm2):");
-        etiquetaSuperficie.setBounds(20, 150, 135, 23);
+        superficieLabel = new JLabel();
+        superficieLabel.setText("Superficie (cm2):");
+        superficieLabel.setBounds(20, 150, 135, 23);
 
         imagenLabel = new JLabel();
         imagenLabel.setBounds(20, 180, 240, 200);
@@ -60,13 +60,13 @@ public class VentanaCilindro extends JFrame implements ActionListener {
         ImageIcon iconoRedimensionado = new ImageIcon(imagenRedimensionada);
         imagenLabel.setIcon(iconoRedimensionado);
 
-        contenedor.add(etiquetaRadio);
-        contenedor.add(campoRadio);
-        contenedor.add(etiquetaAltura);
-        contenedor.add(campoAltura);
-        contenedor.add(botonCalcular);
-        contenedor.add(etiquetaVolumen);
-        contenedor.add(etiquetaSuperficie);
+        contenedor.add(radioLabel);
+        contenedor.add(radioField);
+        contenedor.add(alturaLabel);
+        contenedor.add(alturaField);
+        contenedor.add(calcularButton);
+        contenedor.add(volumenLabel);
+        contenedor.add(superficieLabel);
         contenedor.add(imagenLabel);
     }
 
@@ -76,11 +76,11 @@ public class VentanaCilindro extends JFrame implements ActionListener {
         double altura = 0;
 
         try {
-            radio = Double.parseDouble(campoRadio.getText());
-            altura = Double.parseDouble(campoAltura.getText());
+            radio = Double.parseDouble(radioField.getText());
+            altura = Double.parseDouble(alturaField.getText());
             Cilindro cilindro = new Cilindro(radio, altura);
-            etiquetaVolumen.setText("Volumen (cm3): " + String.format("%.2f", cilindro.calcularVolumen()));
-            etiquetaSuperficie.setText("Superficie (cm2): " + String.format("%.2f", cilindro.calcularSuperficie()));
+            volumenLabel.setText("Volumen (cm3): " + String.format("%.2f", cilindro.calcularVolumen()));
+            superficieLabel.setText("Superficie (cm2): " + String.format("%.2f", cilindro.calcularSuperficie()));
         } catch (Exception e) {
             error = true;
         } finally {
